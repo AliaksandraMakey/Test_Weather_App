@@ -8,6 +8,7 @@ struct City {
     var lon :Double
     var lat: Double
     var fact: Fact?
+    var condition: String?
     var localTIme: String?
 }
 var cities = [City(name: "Warsaw", lon: 21.017532, lat: 52.237049),
@@ -44,12 +45,14 @@ class WeatherAllCitiesViewController: UIViewController{
                         var cityValue: City = cities[row]
                         cityValue.fact = response.fact
                         cityValue.localTIme = response.localTime
+                        cityValue.condition = response.fact.condition
                         cities[row] = cityValue
                     }
                     if let row = self.savedCities.firstIndex(where: {$0.name == city.name}) {
                         var cityValue: City = self.savedCities[row]
                         cityValue.fact = response.fact
                         cityValue.localTIme = response.localTime
+                        cityValue.condition = response.fact.condition
                         self.savedCities[row] = cityValue
                     }
                     self.tableViewAllCities.reloadData()
@@ -111,10 +114,12 @@ extension WeatherAllCitiesViewController: UITableViewDelegate, UITableViewDataSo
         
         cell.cityLabel.text = savedCities[indexPath.row].name
         if (savedCities[indexPath.row].fact == nil) ||  (savedCities[indexPath.row].localTIme) == nil{
+            cell.timeLabel.text = " "
             cell.tempCityLabel.text = " "
         } else {
             cell.tempCityLabel.text = "\(String(describing: savedCities[indexPath.row].fact!.temp!))"
             cell.timeLabel.text = savedCities[indexPath.row].localTIme!
+            cell.conditionImage.image = iconImageFunction(savedCities[indexPath.row].condition ?? " ")
         }
         return cell
     }
