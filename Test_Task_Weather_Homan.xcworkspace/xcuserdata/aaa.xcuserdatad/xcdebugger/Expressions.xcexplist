@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "WeatherResponse.init(from:):WeatherResponse.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in WeatherService.loadWeatherData(city:):WeatherService.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
